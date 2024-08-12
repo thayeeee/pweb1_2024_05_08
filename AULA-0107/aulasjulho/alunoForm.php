@@ -19,6 +19,12 @@ if(!empty($_POST)){
   ]);
 }
 
+if (!empty($_GET['id'])){
+  $data = $db->find($_GET['id']);
+  var_dump($data);
+  exit;
+}
+
 ?>
 
 <div class="col">
@@ -29,19 +35,22 @@ if(!empty($_POST)){
       
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
-        <input type="text" class="form-control" name="nome" require placeholder="Nome">
+        <input type="text" 
+        class="form-control" 
+        value="<?php echo !empty ($data->nome) ? $data->nome : "" ?>"
+        name="nome" require placeholder="Nome">
       </div>
       
       
       <div class="mb-3">
         <label for="cpf" class="form-label">CPF</label>
-        <input type="cpf" class="form-control" name="cpf" require placeholder="000.000.000-00">
+        <input type="cpf" class="form-control" value="<?php echo !empty ($data->cpf) ? $data->cpf : "" ?>" name="cpf" require placeholder="000.000.000-00">
       </div>
       
       
       <div class="mb-3">
         <label for="telefone" class="form-label">Telefone</label>
-        <input type="text" class="form-control" name="telefone" require placeholder="(00)0 0000-0000">
+        <input type="text" class="form-control" value="<?php echo !empty ($data->telefone) ? $data->telefone: "" ?>"name="telefone" require placeholder="(00)0 0000-0000">
       </div>
 
       <button type="submit"

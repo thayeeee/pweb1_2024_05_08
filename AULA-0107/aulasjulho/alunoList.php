@@ -7,7 +7,13 @@
 
   $db = new db();
   $db->conn();
-    
+   
+  
+  if(!empty($_GET['id'])){
+    $db->destroy($_GET['id']);
+
+  }
+ 
   $dados = $db->all();
 
   //var_dump($dados);
@@ -51,6 +57,8 @@
                   <td>$item->nome</td>
                   <td>$item->cpf</td>
                   <td>$item->telefone</td>
+                  <td><a href='alunoForm.php?id'>Editar</a></td>
+                  <td><a onclick='return confirm(\"Deseja excluir\")'href='alunoList.php?id=$item->id'>Deletar</a></td>
                 </tr>";
         }
       ?>
